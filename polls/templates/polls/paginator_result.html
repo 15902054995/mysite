@@ -1,0 +1,21 @@
+{% for question in questions %}
+    {# 每个"question"都是一个Question模型对象. #}
+    {{ question.question_text|upper }}<br />
+{% endfor %}
+
+{# 分页标签的HTML代码 #}
+<div class="pagination">
+    <span class="step-links">
+        {% if questions.has_previous %}
+            <a href="?page={{ questions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+        </span>
+
+        {% if questions.has_next %}
+            <a href="?page={{ questions.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
